@@ -37,7 +37,7 @@ public class TakeAwayManagerTest {
     }
 	
 	@Test
-    public void HalfDiscountLessExpensivePaninoWith5PlusPaninoOrder_Test() throws TakeAwayBillException{
+    public void Bill_ListOrderWithMoreThan5Sandwich_CorrectTotalWithDiscount50() throws TakeAwayBillException{
         List<MenuItem> itemsOrdered = new ArrayList<MenuItem>();
         TakeAwayManager testBill = new TakeAwayManager();
 
@@ -63,7 +63,7 @@ public class TakeAwayManagerTest {
     }
 	
     @Test
-    public void Discount10PercentWith50PlusEuroOrder_Test() throws TakeAwayBillException {
+    public void Bill_ListOrderWithMoreThan50_CorrectTotalWithDiscount10() throws TakeAwayBillException {
         List<MenuItem> itemsOrdered = new ArrayList<MenuItem>();
         TakeAwayManager testBill = new TakeAwayManager();
         
@@ -79,6 +79,21 @@ public class TakeAwayManagerTest {
             exc.getMessage();
         }
     }
+    
+    @Test
+    public void Bill_ListOrderWithLessThan10_CorrectTotalWithIncrement() throws TakeAwayBillException {
+        List<MenuItem> itemsOrdered = new ArrayList<MenuItem>();
+        TakeAwayManager testBill = new TakeAwayManager();
+
+        itemsOrdered.add(new MenuItem("Hot dog" , MenuItem.items.Panino, 3.50));
+
+        try {
+            assertEquals(4, testBill.getOrderPrice(itemsOrdered), 0.0);
+        } 
+        catch (TakeAwayBillException exc){
+            exc.getMessage();
+        }
+    } 
     
     @Rule
     public ExpectedException thrown = ExpectedException.none();

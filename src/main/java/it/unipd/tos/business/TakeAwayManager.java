@@ -11,7 +11,7 @@ import it.unipd.tos.model.MenuItem;
 
 public class TakeAwayManager implements TakeAwayBill{
     public double getOrderPrice(List<MenuItem> itemsOrdered) throws TakeAwayBillException {
-        double total = 0.0;
+    double commisione = 0.5;
         int numeroPanini=0;
         double totaleCibo = 0.0;
         double totaleBevande = 0.0;
@@ -43,6 +43,11 @@ public class TakeAwayManager implements TakeAwayBill{
             totaleCibo -= (totaleCibo*0.1);
         }
             
-        return totaleCibo+totaleBevande;
+        if(totaleCibo + totaleBevande < 10.0) {
+            return totaleBevande + totaleCibo + commisione;    
+        }
+        else {
+            return totaleBevande + totaleCibo;
+        }
 }
 }
