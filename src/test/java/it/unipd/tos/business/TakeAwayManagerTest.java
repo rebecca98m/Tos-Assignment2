@@ -59,5 +59,23 @@ public class TakeAwayManagerTest {
             exc.getMessage();
         }
     }
+	
+    @Test
+    public void Discount10PercentWith50PlusEuroOrder_Test() throws TakeAwayBillException {
+        List<MenuItem> itemsOrdered = new ArrayList<MenuItem>();
+        TakeAwayManager testBill = new TakeAwayManager();
+        
+        itemsOrdered.add(new MenuItem("Panino primavera", MenuItem.items.Panino, 40.00));
+        itemsOrdered.add(new MenuItem("Panino primavera", MenuItem.items.Panino, 15.00));
+        itemsOrdered.add(new MenuItem("Coca cola" , MenuItem.items.Bevanda, 1.50));
+        itemsOrdered.add(new MenuItem("Olive ascolane" , MenuItem.items.Fritto, 3.00));
+  
+        try {
+            assertEquals(53.7, testBill.getOrderPrice(itemsOrdered), 0.0);
+        } 
+        catch (TakeAwayBillException exc){
+            exc.getMessage();
+        }
+    }
 
 }
