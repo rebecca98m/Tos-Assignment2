@@ -32,6 +32,9 @@ public class TakeAwayManager implements TakeAwayBill{
             }
         }
     }
+        if(itemsOrdered.size() > 30){
+            throw new TakeAwayBillException("Non ci possono essere più di 30 elementi nell'ordine");
+        }
         
         if(numeroPanini > 5){
             totaleCibo -= (paninoMenoCostoso/2);
